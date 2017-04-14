@@ -11,6 +11,9 @@ public class JNIDynamicUtils {
      */
     public static native String getHelloStringFromJNI();
 
+
+    public static native String getSumFromJNI(int i1,int i2);
+
     /**
      * 加载so库或jni库
      */

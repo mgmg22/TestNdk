@@ -7,6 +7,12 @@ jstring native_hello(JNIEnv *env, jclass clz) {
     return env->NewStringUTF("Hello java, this is C++. ---jni");
 }
 
+jstring calcSum(JNIEnv *env,jclass clz,jint i1,jint i2){
+    char result[50];
+    sprintf(result," this string from JNI. result=%d",(i1+i2));
+    return env->NewStringUTF(result);
+}
+
 /**
  * JNINativeMethod由三部分组成,可添加多组对应:
  * (1)Java中的函数名;
@@ -14,8 +20,8 @@ jstring native_hello(JNIEnv *env, jclass clz) {
  *  ()Ljava/lang/String; ()表示无参，Ljava/lang/String;表示返回String，在对象类名（包括包名，‘/’间隔）前面加L，分号结尾
  * (3)native函数名
  */
-static JNINativeMethod gMethods[] = { {
-                                              "getHelloStringFromJNI", "()Ljava/lang/String;", (void *) native_hello } };
+static JNINativeMethod gMethods[] = { {"getHelloStringFromJNI", "()Ljava/lang/String;", (void *) native_hello },
+                                      {"getSumFromJNI", "(II)Ljava/lang/String;", (void *)calcSum }};
 
 //System.loadLibrary过程中会自动调用JNI_OnLoad，在此进行动态注册
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {

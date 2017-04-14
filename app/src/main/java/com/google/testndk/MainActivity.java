@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         btn_dynamic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv.append("\n->>"+JNIDynamicUtils.getHelloStringFromJNI());
+                tv.append("\n->>"+JNIDynamicUtils.getSumFromJNI(3,4));
+//                tv.append("\n->>"+JNIDynamicUtils.getHelloStringFromJNI());
             }
         });
     }
